@@ -184,4 +184,34 @@ mkdir temp
 cd temp
 git clone https://github.com/madhurajayashanka/docker-mysql-nodejs-reactjs-app.git
 cd docker-mysql-nodejs-reactjs-app
-docker-compose up --build -->
+docker-compose up --build
+
+4.tomcat 
+sudo su
+cd /opt
+sudo yum install java-17-amazon-corretto-devel
+cd /opt
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.84/bin/apache-tomcat-9.0.84.tar.gz
+tar -xzvf apache-tomcat-9.0.84.tar.gz
+ cd /opt
+ mv  apache-tomcat-9.0.84 tomcat
+ cd tomcat
+cd bin
+./startup.sh
+vi /opt/tomcat/webapps/host-manager/META-INF/context.xml
+vi /opt/tomcat/webapps/manager/META-INF/context.xml
+cd ..
+vi tomcat-users.xml
+<role rolename="manager-gui"/>
+<role rolename="manager-script"/>
+<role rolename="manager-jmx"/>
+<role rolename="manager-status"/>
+<user username="munni" password="munni" roles="manager-gui"/>
+<user username="admin" password="admin" roles="manager-gui,manager-script,manager-jmx,manager-status/>
+<user username="deployer" password="deployer" roles="manager-script"/>
+esc : wq
+	cd ..
+	cd bin
+	 cd conf
+	./shutdown.sh
+	./startup.sh    -->
